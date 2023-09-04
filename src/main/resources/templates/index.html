@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h3>Provided endPoints</h3>
+    <div>
+        <ul>
+            <li><a th:href="'/albums'">albums</a></li>
+            <li><a th:href="'/hello'">Hello </a><span>You can specify the route hello?name=YourName</span></li>
+            <li><a th:href="'/capitalize/World'">Capitalize </a><span>Add a word after the '/' to get capitalized</span></li>
+            <li><a th:href="'/num-fact/50'">Numbers </a><span>change the number to get a fact about it</span></li>
+        </ul>
+    </div>
+    <!-- Splash Screen code starts here  -->
+    <div class="splash">
+        <h1 class="splash-header">Songer web App</h1>
+    </div>
+</div>
+<script th:src="@{/Js/index.js}"></script>
+</body>
+</html>
