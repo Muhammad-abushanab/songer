@@ -1,18 +1,63 @@
 package com.sing.songer.Model;
 
-public class Album {
-    private final String title;
-    private final String artist;
-    private final int songCount;
-    private final int length;
-    private final String imageUrl;
+import javax.persistence.*;
 
-    public Album(String title,String artist,int songCount,int length,String imageUrl){
+@Entity
+public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "title", nullable = false)
+    private String title;
+    @Column(name = "artist", nullable = false)
+    private String artist;
+    @Column(name = "songCount", nullable = false)
+    private int songCount;
+    @Column(name = "length", nullable = false)
+    private int length;
+    @Column(name = "imageUrl", nullable = true)
+    private String imageUrl;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setSongCount(int songCount) {
+        this.songCount = songCount;
+
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
+    public Album(String title, String artist, int songCount, int length, String imageUrl) {
         this.artist = artist;
         this.imageUrl = imageUrl;
         this.title = title;
         this.songCount = songCount;
         this.length = length;
+    }
+
+    public Album() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
