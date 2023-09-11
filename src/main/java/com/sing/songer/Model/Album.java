@@ -1,6 +1,7 @@
 package com.sing.songer.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -18,26 +19,8 @@ public class Album {
     @Column(name = "imageUrl", nullable = true)
     private String imageUrl;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public void setSongCount(int songCount) {
-        this.songCount = songCount;
-
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+    private List<Song> songs;
 
 
     public Album(String title, String artist, int songCount, int length, String imageUrl) {
@@ -79,4 +62,30 @@ public class Album {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setSongCount(int songCount) {
+        this.songCount = songCount;
+
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }
