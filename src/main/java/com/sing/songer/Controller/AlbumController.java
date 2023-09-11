@@ -5,7 +5,9 @@ import com.sing.songer.repositories.AlbumRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -30,12 +32,16 @@ public class AlbumController {
     @PostMapping("/albums/create")
     public RedirectView createAlbum(String title, String artist, String imageUrl, int songCount, int length) {
         if (songCount <= 0 || length <= 0) {
-            // Handle invalid data here (e.g., show an error message to the user)
             return new RedirectView("/error");
         }
         System.out.println(imageUrl);
         Album album = new Album(title, artist, songCount, length, imageUrl);
         albumRepo.save(album);
+        return new RedirectView("/albums");
+    }
+    @DeleteMapping("/albums/delete/{id}")
+    public RedirectView deleteAlbum(@PathVariable long id){
+        albumRepo.deleteById(id);
         return new RedirectView("/albums");
     }
 }
