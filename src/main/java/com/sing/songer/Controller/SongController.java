@@ -7,10 +7,14 @@ import com.sing.songer.repositories.AlbumRepo;
 import com.sing.songer.repositories.SongRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 public class SongController {
@@ -29,6 +33,12 @@ public class SongController {
     @DeleteMapping("/delete-song/{songId}")
     public RedirectView deleteSong(@PathVariable long songId){
         songRepo.deleteById(songId);
-        return new RedirectView("/albums");
+        return new RedirectView("/songs");
+    }
+    @GetMapping("songs")
+    public String getAllSongs(Model songModel){
+        List<Song> songs = songRepo.findAll();
+        songModel.addAttribute("songs",songs);
+        return "songs";
     }
 }

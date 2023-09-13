@@ -14,10 +14,21 @@
 - that's it everything shall be good.
 
 
-Endpoints
-- `/` root endpoint that displays the home page
-- `/hello?name=YourName` a route that welcomes you to the application by default it's guest
-- `/capitalize/{word}` a route that capitalize the word by default the word is world
-- `/albums` displays a album for some singers.
-- `/num-fact/{number}` a route to see a fact about a certain number by default 50
+## Routes
+
+| Route                 | Method | Description                                   |
+|-----------------------|--------|-----------------------------------------------|
+| /albums               | GET    | Retrieves a list of albums.                   |
+| /albums/create        | POST   | Creates a new album.                          |
+| /albums/delete/{id}   | DELETE | Deletes an album by ID.                       |
+| /albums/{id}          | GET    | Retrieves a specific album by ID.             |
+| /capitalize/{word}    | GET    | Capitalizes a word and displays it.           |
+| /error                | GET    | Displays an error page.                       |
+| /hello                | GET    | Displays a greeting message.                  |
+| /                     | GET    | Displays the root page (index).               |
+| /num-fact/{number}    | GET    | Retrieves a number fact from an external API. |
+| /add-song             | POST   | Adds a new song to an album.                  |
+| /delete-song/{songId} | DELETE | Deletes a song by ID.                         |
+| /songs                | GET    | Retrieves a list of songs.                    |
+
 

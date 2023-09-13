@@ -1,5 +1,6 @@
 package com.sing.songer.Controller;
 
+import com.sing.songer.Exceptions.AlbumNotFoundException;
 import com.sing.songer.Model.Album;
 import com.sing.songer.repositories.AlbumRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ public class AlbumController {
 //        Album album2 = new Album("The Eminem Show", "Eminem", 19, 4260, "https://i.pinimg.com/564x/07/13/9c/07139c5c7253898b88652e97c3604466.jpg");
 //        Album album3 = new Album("This Is Acting", "Sia", 18, 4230, "https://i.pinimg.com/564x/0a/b9/3a/0ab93a940574edcb06814837533905d2.jpg");
         List<Album> albums = albumRepo.findAll();
-        System.out.println(albums.toString());
         albmusModel.addAttribute("albums",albums);
         return "albums";
     }
@@ -43,5 +43,11 @@ public class AlbumController {
     public RedirectView deleteAlbum(@PathVariable long id){
         albumRepo.deleteById(id);
         return new RedirectView("/albums");
+    }
+    @GetMapping("albums/{id}")
+    public String getAllAlbums(Model albmusModel , @PathVariable long id){
+        Album album = albumRepo.findById(id).orElseThrow(() -> new AlbumNotFoundException("No Album found"));
+        albmusModel.addAttribute("album",album);
+        return "album";
     }
 }
